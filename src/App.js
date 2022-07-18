@@ -6,15 +6,17 @@ import "./App.css";
 import LoginScreen from "./containers/LoginScreen";
 import Navbar from "./containers/Navbar";
 import RegisterScreen from "./containers/RegisterScreen";
+import ProfileScreen from "./containers/ProfileScreen";
 
 function App() {
-  return (
-    <div className="App">
-      <Navbar />
-      {/* <LoginScreen /> */}
-      {/* <RegisterScreen /> */}
-    </div>
-  );
+    return (
+        <div className="App">
+            <Navbar />
+            {/* <LoginScreen /> */}
+            {/* <RegisterScreen /> */}
+            {/* <ProfileScreen/> */}
+        </div>
+    );
 }
 
 export default App;

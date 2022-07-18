@@ -4,6 +4,7 @@ import DummyProfile from "./DummyProfile.png";
 import DummyProfile2 from "./DummyProfile2.png";
 import DummyProfile3 from "./DummyProfile3.png";
 import DummyProfile4 from "./DummyProfile4.png";
+import Add from "./Add.png";
 
 export {
   LogoApp,
@@ -12,4 +13,5 @@ export {
   DummyProfile2,
   DummyProfile3,
   DummyProfile4,
+  Add,
 };
