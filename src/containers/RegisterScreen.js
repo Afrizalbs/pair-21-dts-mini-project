@@ -6,13 +6,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { BgLogin } from "../assets";
-
-const theme = createTheme();
 
 export default function RegisterScreen() {
   const handleSubmit = (event) => {
@@ -26,7 +22,7 @@ export default function RegisterScreen() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -44,20 +40,19 @@ export default function RegisterScreen() {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
+        ></Grid>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={6}
+          component={Paper}
+          elevation={6}
+          square
+          sx={{
+            backgroundColor: "rgba(20, 20, 20, 1)",
+          }}
         >
-          {/* <img
-            src={BgLogin}
-            alt=""
-            style={{
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              maxHeight: "100vh",
-              width: "800px",
-            }}
-          /> */}
-        </Grid>
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 10,
@@ -93,7 +88,6 @@ export default function RegisterScreen() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                autoFocus
               />
               <TextField
                 margin="normal"
@@ -126,7 +120,7 @@ export default function RegisterScreen() {
                 </Grid>
                 <Grid item>
                   <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                    {"have an account? Login here"}
                   </Link>
                 </Grid>
               </Grid>
@@ -134,6 +128,6 @@ export default function RegisterScreen() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </>
   );
 }

@@ -6,13 +6,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { BgLogin } from "../assets";
-
-const theme = createTheme();
 
 export default function LoginScreen() {
   const handleSubmit = (event) => {
@@ -25,7 +22,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
@@ -56,7 +53,18 @@ export default function LoginScreen() {
             }}
           />
         </Grid>
-        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={6}
+          component={Paper}
+          elevation={6}
+          square
+          sx={{
+            backgroundColor: "rgba(20, 20, 20, 1)",
+          }}
+        >
           <Box
             sx={{
               my: 15,
@@ -124,6 +132,6 @@ export default function LoginScreen() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </>
   );
 }

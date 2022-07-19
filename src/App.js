@@ -7,16 +7,20 @@ import LoginScreen from "./containers/LoginScreen";
 import Navbar from "./containers/Navbar";
 import RegisterScreen from "./containers/RegisterScreen";
 import ProfileScreen from "./containers/ProfileScreen";
+import { ThemeProvider } from "@mui/material";
+import themes from "./themes";
 
 function App() {
-    return (
-        <div className="App">
-            <Navbar />
-            {/* <LoginScreen /> */}
-            {/* <RegisterScreen /> */}
-            {/* <ProfileScreen/> */}
-        </div>
-    );
+  return (
+    <ThemeProvider theme={themes}>
+      <div className="App">
+        {/* <Navbar /> */}
+        {/* <LoginScreen /> */}
+        <RegisterScreen />
+        {/* <ProfileScreen /> */}
+      </div>
+    </ThemeProvider>
+  );
 }
 
 export default App;
