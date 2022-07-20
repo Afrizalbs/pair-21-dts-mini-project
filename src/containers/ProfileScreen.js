@@ -1,11 +1,4 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  CssBaseline,
-  Grid,
-} from "@mui/material";
+import { Box, Button, Card, CardMedia, CssBaseline, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import {
@@ -38,115 +31,115 @@ const ProfileScreen = () => {
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
-              height="140"
+              height="200"
+              width="200"
               image={DummyProfile}
               alt="Murat"
             />
-            <CardContent>
-              <Typography
-                align="center"
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{
-                  color: "text.secondary",
-                }}
-              >
-                Murat
-              </Typography>
-            </CardContent>
           </Card>
+          <Typography
+            align="center"
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              color: "text.secondary",
+              mt: "21px",
+            }}
+          >
+            Murat
+          </Typography>
         </Grid>
         <Grid item xs={6} md={2}>
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
-              height="140"
+              height="200"
+              width="200"
               image={DummyProfile2}
               alt="Umut"
             />
-            <CardContent>
-              <Typography
-                align="center"
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{
-                  color: "text.secondary",
-                }}
-              >
-                Umut
-              </Typography>
-            </CardContent>
           </Card>
+          <Typography
+            align="center"
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              color: "text.secondary",
+              mt: "21px",
+            }}
+          >
+            Umut
+          </Typography>
         </Grid>
         <Grid item xs={6} md={2}>
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
-              height="140"
+              height="200"
               image={DummyProfile3}
               alt="Kemal"
             />
-            <CardContent>
-              <Typography
-                align="center"
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{
-                  color: "text.secondary",
-                }}
-              >
-                Kemal
-              </Typography>
-            </CardContent>
           </Card>
+          <Typography
+            align="center"
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              color: "text.secondary",
+              mt: "21px",
+            }}
+          >
+            Kemal
+          </Typography>
         </Grid>
         <Grid item xs={6} md={2}>
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
-              height="140"
+              height="200"
               image={DummyProfile4}
               alt="green iguana"
             />
-            <CardContent>
-              <Typography
-                align="center"
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{
-                  color: "text.secondary",
-                }}
-              >
-                Ucok
-              </Typography>
-            </CardContent>
           </Card>
+          <Typography
+            align="center"
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              color: "text.secondary",
+              mt: "21px",
+            }}
+          >
+            Ucok
+          </Typography>
         </Grid>
         <Grid item xs={6} md={2}>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia component="img" height="140" image={Add} />
-            <CardContent
-              sx={{
-                backgroundColor: "primary",
-              }}
-            >
-              <Typography
-                align="center"
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{
-                  color: "text.secondary",
-                }}
-              >
-                Other
-              </Typography>
-            </CardContent>
-          </Card>
+          <Box
+            sx={{
+              maxWidth: 345,
+              textAlign: "center",
+              py: 5,
+              height: "200px",
+            }}
+          >
+            <img src={Add} alt="" />
+          </Box>
+          <Typography
+            align="center"
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{
+              color: "text.secondary",
+              mt: "21px",
+            }}
+          >
+            Other
+          </Typography>
         </Grid>
       </Grid>
 
