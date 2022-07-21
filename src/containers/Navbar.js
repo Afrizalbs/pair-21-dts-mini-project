@@ -57,9 +57,6 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  const  clickMenu = (menu) => {
-    console.log(menu)
-  }
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -271,7 +268,7 @@ const Navbar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={clickMenu(setting)}>
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}

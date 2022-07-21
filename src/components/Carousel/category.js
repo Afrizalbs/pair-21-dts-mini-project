@@ -6,10 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./swiper.css";
-import { BgLogin } from "../../assets";
-import { Box, Container, Typography } from "@mui/material";
+
+import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getNowPlayingMovies, getPopularMovies, getTop10Movies, getTopRatedMovies, getUpComingMovies } from "../../data";
+import { getPopularMovies, getTopRatedMovies, getUpComingMovies } from "../../data";
 
 
 
@@ -19,12 +19,12 @@ const Category = (props) => {
   useEffect(() => {
     async function getData() {
       let results;
-      if(props.id == 1){
+      if(props.id === 1){
          results = await  getPopularMovies();
-      }else if(props.id == 2){
+      }else if(props.id === 2){
          results = await  getUpComingMovies();
 
-      }else if(props.id == 3){
+      }else if(props.id === 3){
          results = await  getTopRatedMovies();
 
       }

@@ -6,10 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./swiper.css";
-import { BgLogin } from "../../assets";
-import { Box, Container, Typography } from "@mui/material";
+
+import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getLatestMovies, getTrendingWeekMovies } from "../../data";
+import {  getTrendingWeekMovies } from "../../data";
 
 
 
