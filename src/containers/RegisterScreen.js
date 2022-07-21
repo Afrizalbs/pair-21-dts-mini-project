@@ -4,22 +4,36 @@ import Checkbox from "@mui/material/Checkbox";
 import CssBaseline from "@mui/material/CssBaseline";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
+
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebase";
 export default function RegisterScreen() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      usernaname: data.get("username"),
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = React.useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const email = data.get("email");
+        const password = data.get("password");
+
+        try {
+            const { user } = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            console.log(user);
+            navigate("/");
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
+    };
 
   return (
     <>
@@ -71,7 +85,7 @@ export default function RegisterScreen() {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              <TextField
+              {/* <TextField
                 margin="normal"
                 required
                 fullWidth
@@ -79,7 +93,7 @@ export default function RegisterScreen() {
                 label="Username"
                 name="username"
                 autoFocus
-              />
+              /> */}
               <TextField
                 margin="normal"
                 required
@@ -99,6 +113,7 @@ export default function RegisterScreen() {
                 id="password"
                 autoComplete="current-password"
               />
+              <Typography color="red">{errorMessage}</Typography>
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
@@ -114,12 +129,12 @@ export default function RegisterScreen() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  {/* <Link href="#" variant="body2">
                     Forgot password?
-                  </Link>
+                  </Link> */}
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to="/login" variant="body2">
                     {"have an account? Login here"}
                   </Link>
                 </Grid>

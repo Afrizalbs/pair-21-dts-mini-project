@@ -1,25 +1,33 @@
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import CssBaseline from "@mui/material/CssBaseline";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import Paper from "@mui/material/Paper";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
 import * as React from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import { auth } from "../config/firebase";
+
+import { Button, Checkbox, CssBaseline, FormControlLabel, Grid, Paper, TextField, Typography } from "@mui/material";
 import { BgLogin } from "../assets";
 
-export default function LoginScreen() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+ const   LoginScreen = () => {
+  const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = React.useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const email = data.get("email");
+        const password = data.get("password");
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate("/");
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
+    };
+
+
 
   return (
     <>
@@ -103,6 +111,7 @@ export default function LoginScreen() {
                 id="password"
                 autoComplete="current-password"
               />
+              <Typography color="red">{errorMessage}</Typography>
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
@@ -118,13 +127,14 @@ export default function LoginScreen() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  {/* <Link href="#" variant="body2">
                     Forgot password?
-                  </Link>
+                  </Link> */}
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                
+                  <Link to="/register">
+                      {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
@@ -135,3 +145,5 @@ export default function LoginScreen() {
     </>
   );
 }
+
+export default LoginScreen;

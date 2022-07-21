@@ -18,6 +18,11 @@ import { styled, alpha, createTheme } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { ThemeProvider } from "@emotion/react";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase";
+import { Logout } from "@mui/icons-material";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const pages = ["Home", "Series", "Movies", "Popular", "My List"];
 const settings = ["Profile", "Logout"];
@@ -25,6 +30,17 @@ const settings = ["Profile", "Logout"];
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+
+    const onLogout = async () => {
+        try {
+            await signOut(auth);
+            navigate("/login");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -40,6 +56,10 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const  clickMenu = (menu) => {
+    console.log(menu)
+  }
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -104,6 +124,8 @@ const Navbar = () => {
       },
     },
   });
+
+  const [user] = useAuthState(auth);
 
   return (
     <ThemeProvider theme={theme}>
@@ -213,6 +235,9 @@ const Navbar = () => {
                   inputProps={{ "aria-label": "search" }}
                 />
               </Search>
+
+           
+              
               <Tooltip title="Open Gift">
                 <CardGiftcardIcon sx={{ m: 1 }} />
               </Tooltip>
@@ -224,6 +249,11 @@ const Navbar = () => {
                   <Avatar alt="Afrizal" variant="square" src={DummyProfile} />
                 </IconButton>
               </Tooltip>
+              <Box sx={{ display: "flex" }}>
+                        <Box sx={{ padding: 1 }}>
+                            <Logout onClick={onLogout} />
+                        </Box>
+                    </Box>
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"
@@ -241,7 +271,7 @@ const Navbar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <MenuItem key={setting} onClick={clickMenu(setting)}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}

@@ -10,17 +10,16 @@ import ProfileScreen from "./containers/ProfileScreen";
 import { ThemeProvider } from "@mui/material";
 import themes from "./themes";
 import HomeScreen from "./containers/HomeScreen";
+import Footer from "./containers/Footer";
 
 function App() {
   return (
     <ThemeProvider theme={themes}>
       <div className="App">
-        <Navbar />
-        {/* <LoginScreen /> */}
-        {/* <RegisterScreen /> */}
-        {/* <ProfileScreen /> */}
-        <HomeScreen />
-      </div>
+                <Navbar />
+                <HomeScreen />
+                <Footer/>
+            </div>
     </ThemeProvider>
   );
 }

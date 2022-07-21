@@ -1,5 +1,5 @@
 // import Swiper core and required modules
-import { Navigation, Autoplay } from "swiper";
+import { Navigation, Autoplay, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -8,59 +8,75 @@ import "swiper/css/navigation";
 import "./swiper.css";
 import { BgLogin } from "../../assets";
 import { Box, Container, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { getLatestMovies, getTrendingWeekMovies } from "../../data";
+
+
 
 const Carousel = () => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      const results = await  getTrendingWeekMovies();
+      const finalResults = results.slice(0, 10);
+  
+      setMovies(finalResults);
+    }
+  
+    getData();
+  }, []);
   return (
-    <Container>
-      <Swiper
-        navigation={true}
-        autoplay={{
-          delay: 1500,
+    <>
+      
+      <Swiper modules={[Virtual,Navigation, Autoplay]} navigation={true} autoplay={{
+          delay: 8000,
           disableOnInteraction: true,
-        }}
-        modules={[Navigation, Autoplay]}
-      >
-        <SwiperSlide>
+        }}  virtual>
+      {movies.map((slideContent, index) => (
+        <SwiperSlide key={slideContent} virtualIndex={index}>
           <Box
             sx={{
-              width: "70%",
+              width: "50%",
               height: "420px",
-              backgroundColor: "yellow",
+              backgroundColor: "black",
               textAlign: "left",
             }}
           >
             <Typography
               variant="h4"
               sx={{
-                pt: 5,
-                pl: 3,
+                pt: 8,
+                pl: 20,
+                color:'white'
               }}
             >
-              The Walking Dead
+             {slideContent.original_title}
             </Typography>
             <Typography
               variant="body2"
               sx={{
                 mt: 3,
-                px: 3,
+                px: 20,
+                color:'white'
               }}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-              libero modi aspernatur ipsa enim! Numquam, at expedita, facere
-              saepe laudantium dolorum voluptatibus dicta rem ad, quibusdam
-              architecto aspernatur eos minima!
+              {slideContent.overview}
             </Typography>
           </Box>
-          <img src={BgLogin} alt="" />
+          <Box
+            sx={{
+              width: "50%",
+              height: "420px",
+              // backgroundColor: "black",
+              textAlign: "left",
+            }}
+          >
+          <img src={`https://image.tmdb.org/t/p/original/${slideContent.backdrop_path}`} alt="" />
+          </Box>
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={BgLogin} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={BgLogin} alt="" />
-        </SwiperSlide>
-      </Swiper>
-    </Container>
+      ))}
+    </Swiper>
+    </>
   );
 };
 
